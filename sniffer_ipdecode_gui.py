@@ -6,21 +6,21 @@ from ctypes import *
 
 sg.theme('BlueMono')
 
-f_list_col = [
+config_col = [
     [
         sg.Text("Host",justification='right',size=(25,1)),
-        sg.In(size=(25,1), enable_events=True, key = "-FOLDER-"),
-        sg.FolderBrowse(size=(25,1)),
+        sg.In(size=(25,1), enable_events=True, key = "-HOST-"),
+        sg.Button("Capture",size=(25,1)),
 
     ],
     [
-        sg.Listbox(
-            values=[], enable_events=True, size=(100,5), key="-FLIST-"
-        )
+        # sg.Listbox(
+        #     values=[], enable_events=True, size=(100,5), key="-FLIST-"
+        # )
+        sg.Table(headings=['Protocol','Source','Destination'], values=[], expand_x = True, enable_events=True, justification='c',key="-FLIST-")
     ]
 
 ]
-
 img_col = [
     [sg.Text("Choose an image from list.",justification='right',size=(55,1))],
     [sg.Text(size=(25,1), key="-TOUT-")],
@@ -30,10 +30,11 @@ img_col = [
 # --- Full Layout ---
 layout = [
     [
-        sg.Column(f_list_col),
+        sg.Column(config_col),
 
     ],
-    [sg.VSeparator(),],
+    # [sg.Column(result_col)],
+    [sg.HSeparator(),],
     [
         sg.Column(img_col)
     ],
@@ -45,8 +46,8 @@ while True:
     event, values = window.read()
     if event == "Exit" or event == sg.WIN_CLOSED:
         break
-    if event == "-FOLDER-":
-        folder = values["-FOLDER-"]
+    if event == "-CAPTURE-":
+        folder = values["-CAPTURE-"]
         try:
             file_list = os.listdir(folder)
         except:
@@ -81,20 +82,6 @@ window.close()
 host ='192.168.0.7'
 
 class IP_protocol(Structure):
-    # _fields_: Sequence[
-    #     ['ihl', c_ubyte, 4],
-    #     ["version", c_ubyte, 4],
-    #     ["tos", c_ubyte],
-    #     ["len", c_ushort],
-    #     ["id", c_ushort],
-    #     ["offset", c_ushort],
-    #     ["ttl", c_ubyte],
-    #     ["protocol_num", c_ubyte],
-    #     ["sum", c_ushort],
-    #     ["src", c_uint32],
-    #     ["dst", c_uint32]
-        
-    #     ]
         
     _fields_ = [
         ("ihl", c_ubyte, 4),
