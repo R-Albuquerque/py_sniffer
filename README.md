@@ -16,6 +16,6 @@ Make sure to run as Administrator/sudo in order to access the network sockets.
 
 ## Screenshot
 
-![screenshot](https://github.com/R-Albuquerque/py_sniffer/screenshots/sniff_gui.PNG)
+![screenshot](https://github.com/R-Albuquerque/py_sniffer/blob/main/screenshots/sniff_gui.PNG)
 
 I will update this README in the future with a more detailed explanation of the inner workings.
